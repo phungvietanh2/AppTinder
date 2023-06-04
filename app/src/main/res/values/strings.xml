@@ -45,7 +45,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="fpass">Quên mật khẩu?<b><font color="#0865D3">Bấm vào đây</font></b></string>
+    <string name="fpass">Quên mật khẩu?<b><font color="#0865D3"> Bấm vào đây</font></b></string>
     <string name="new_user_signup">Bạn chưa có tài khoản?<b><font color="#0865D3"> Dăng ký</font></b></string>
     <string name="new_user_sign">Bạn có tài khoản?<b><font color="#0865D3"> Đăng nhập</font></b></string>
     <string name="chpanhan">Tôi đồng ý với <b><font color="#0865D3"> Điều khoản và Điều kiện của LoveConnect</font></b></string>

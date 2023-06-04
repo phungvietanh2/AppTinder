@@ -41,7 +41,14 @@
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
+    <TextView
+        android:id="@+id/nameErrorTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:visibility="gone" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emaillogsigupTil"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -57,6 +64,14 @@
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/nameErrorTextView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:visibility="gone" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordsigupIlt"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -73,6 +88,14 @@
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/nameErrorTextView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:visibility="gone" />
     <CheckBox
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
@@ -83,6 +106,7 @@
         android:textSize="13dp"
         android:textColor="@color/black"
         android:checked="false" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,13 +114,13 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/LoginBtn"
+            android:id="@+id/sigupBtn"
             android:layout_width="250dp"
             android:layout_height="80dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:backgroundTint="@color/pigg"
-            android:text="Đăng Nhập"
+            android:text="Đăng Ký"
             android:textColor="@color/black"
             android:textSize="25dp" />
 

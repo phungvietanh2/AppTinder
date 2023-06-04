@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.apptinder.DBcontext.DBcontext;
 import com.example.apptinder.DBcontext.UserDao;
@@ -25,34 +27,30 @@ public class LoginActivity extends AppCompatActivity {
     private DBcontext db;
     private UserDao userDao;
     private User user;
+    private TextView view;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
+    private void bindingView() {
         loginButton = findViewById(R.id.LoginBtn);
         gmail = findViewById(R.id.emaillogTil);
         password = findViewById(R.id.passwordlogIlt);
-        db = DBcontext.getDatabase(this);
-//        user = new User();
-//        userDao = db.userDao();
-//        user.setUsername("anh1");
-//        user.setPassword( "123");
-//        user.setEmail( "anh1@gmail.com");
-//        userDao.insertuser(user);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
+        view =findViewById(R.id.AccountTv);
     }
 
-    private void login() {
+    private void bindingAction() {
+        loginButton.setOnClickListener(this::onclicklogin);
+        view.setOnClickListener(this::onclicksigup);
+
+    }
+
+    private void onclicksigup(View view) {
+        Intent intent = new Intent(LoginActivity.this,signupActivity.class);
+        startActivity(intent);
+    }
+
+    private void onclicklogin(View view) {
         String email = gmail.getEditText().getText().toString();
         String passwor = password.getEditText().getText().toString();
-
+        db = DBcontext.getDatabase(this);
         userDao = db.userDao();
         user = userDao.login(email, passwor);
 
@@ -61,12 +59,19 @@ public class LoginActivity extends AppCompatActivity {
             sessionManager = new SessionManager(getApplicationContext());
             sessionManager.loginUser((int) loggedInUserId);
 
-            Intent intent = new Intent(LoginActivity.this, FragmentHome.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         } else {
-            // Xử lý khi đăng nhập thất bại, ví dụ: hiển thị thông báo lỗi, xóa trường nhập liệu, v.v.
-
+            Toast.makeText(this, "Tài khoản và mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        bindingView();
+        bindingAction();
     }
 
 
