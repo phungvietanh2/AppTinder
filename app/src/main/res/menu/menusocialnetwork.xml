@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@+id/suggest"
+        android:enabled="true"
+        android:title="Gợi ý "/>
+    <item android:id="@+id/Latest"
+        android:enabled="true"
+        android:title="Mới Nhất "/>
+</menu>

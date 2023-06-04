@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    tools:context=".PostActivityActivity">
+
+    <LinearLayout
+        android:id="@+id/heard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            android:background="@color/white"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/postButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textColor="@color/black"
+            android:text="Gửi"
+            />
+    </LinearLayout>
+    <EditText
+        android:id="@+id/descriptionEt"
+        android:layout_marginTop="20dp"
+        android:paddingStart="20dp"
+        android:layout_below="@+id/heard"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="top"
+        android:hint="Bạn đang nghĩ gì?"
+        android:inputType="textMultiLine"
+        android:background="@null" />
+    <ImageView
+        android:id="@+id/imageViewSquare"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/descriptionEt"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_add"
+        android:scaleType="centerCrop"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/border_square" />
+    <TextView
+        android:id="@+id/toatalp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/photoRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewSquare"
+        android:layout_marginTop="10dp"
+        tools:listitem="@layout/inmage_show"/>
+
+</RelativeLayout>
