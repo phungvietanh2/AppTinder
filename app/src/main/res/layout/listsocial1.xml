@@ -3,10 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.google.android.material.card.MaterialCardView
-        style="@style/NoCornerMaterialCardView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,9 +18,9 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageViewAvatar"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:id="@+id/imageViewAvatar1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/ic_person" />
 
                 <TextView
@@ -42,19 +38,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="50dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/commentTvv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/bogachngang"
                     android:text="Bong em" />
 
             </LinearLayout>
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>

@@ -49,4 +49,11 @@
     <string name="new_user_signup">Bạn chưa có tài khoản?<b><font color="#0865D3"> Dăng ký</font></b></string>
     <string name="new_user_sign">Bạn có tài khoản?<b><font color="#0865D3"> Đăng nhập</font></b></string>
     <string name="chpanhan">Tôi đồng ý với <b><font color="#0865D3"> Điều khoản và Điều kiện của LoveConnect</font></b></string>
+
+    <string-array name="gender_array">
+        <item>Both</item>
+        <item>Nam</item>
+        <item>Nữ</item>
+    </string-array>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.example.apptinder.SessionManager;
+package com.example.apptinder.Type.SessionManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;

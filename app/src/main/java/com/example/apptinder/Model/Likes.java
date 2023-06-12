@@ -63,4 +63,14 @@ public class Likes {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
+
+    @Override
+    public String toString() {
+        return "Likes{" +
+                "likeId=" + likeId +
+                ", postId=" + postId +
+                ", userId=" + userId +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
+    }
 }

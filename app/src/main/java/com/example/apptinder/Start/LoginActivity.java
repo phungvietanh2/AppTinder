@@ -1,4 +1,4 @@
-package com.example.apptinder;
+package com.example.apptinder.Start;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,9 +11,10 @@ import android.widget.Toast;
 
 import com.example.apptinder.DBcontext.DBcontext;
 import com.example.apptinder.DBcontext.UserDao;
-import com.example.apptinder.Fragment.FragmentHome;
+import com.example.apptinder.MainActivity;
 import com.example.apptinder.Model.User;
-import com.example.apptinder.SessionManager.SessionManager;
+import com.example.apptinder.R;
+import com.example.apptinder.Type.SessionManager.SessionManager;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.LoginBtn);
         gmail = findViewById(R.id.emaillogTil);
         password = findViewById(R.id.passwordlogIlt);
-        view =findViewById(R.id.AccountTv);
+        view = findViewById(R.id.AccountTv);
     }
 
     private void bindingAction() {
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onclicksigup(View view) {
-        Intent intent = new Intent(LoginActivity.this,signupActivity.class);
+        Intent intent = new Intent(LoginActivity.this, signupActivity.class);
         startActivity(intent);
     }
 
@@ -59,8 +60,14 @@ public class LoginActivity extends AppCompatActivity {
             sessionManager = new SessionManager(getApplicationContext());
             sessionManager.loginUser((int) loggedInUserId);
 
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
+            if (user.getAvatar() == null) {
+                Intent intent = new Intent(LoginActivity.this, SaveSettingAcountActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+
         } else {
             Toast.makeText(this, "Tài khoản và mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
         }

@@ -75,6 +75,7 @@
 package com.example.apptinder.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,10 +95,12 @@ import com.example.apptinder.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.ViewHolder> {
 
     private List<Comments> comments;
-    private List<Comments> filteredComments; // Danh sách comment đã được lọc theo postId
+    private List<Comments> filteredComments;
     private List<Post> posts;
     private Context context;
     private int postId;
@@ -107,7 +110,7 @@ public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.
         this.comments = comments;
         this.posts = posts;
         this.postId = postId;
-       filterCommentsByPostId();
+        filterCommentsByPostId();
     }
 
     @NonNull
@@ -122,11 +125,22 @@ public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DBcontext db = DBcontext.getDatabase(context);
         UserDao userDao = db.userDao();
-        Comments comment = filteredComments.get(position); // Lấy đối tượng Comments từ danh sách đã lọc
-        User user = userDao.getUserById(comment.getUserId()); // Lấy đối tượng User dựa trên userId từ comments
+        Comments comment = filteredComments.get(position);
+        User user = userDao.getUserById(comment.getUserId());
 
-        holder.viewname.setText(user.getUsername()); // Đặt giá trị cho thành phần hiển thị tên người dùng
-        holder.viewcommen.setText(comment.getContent()); // Đặt giá trị cho thành phần hiển thị nội dung bình luận
+        holder.viewname.setText(user.getUsername());
+        holder.viewcommen.setText(comment.getContent());
+
+        String avatar = user.getAvatar();
+        if (avatar != null) {
+            Uri avatarUri = Uri.parse(avatar);
+            holder.avata.setImageURI(avatarUri);
+
+        } else {
+            holder.avata.setImageResource(R.drawable.ic_close);
+        }
+
+
     }
 
     @Override
@@ -137,6 +151,7 @@ public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.
             return 0;
         }
     }
+
     private void filterCommentsByPostId() {
         if (comments != null) {
             filteredComments = new ArrayList<>();
@@ -151,12 +166,14 @@ public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private CircleImageView avata;
         private TextView viewname, viewcommen;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             viewname = itemView.findViewById(R.id.commenameEt);
             viewcommen = itemView.findViewById(R.id.commentTvv);
+            avata = itemView.findViewById(R.id.imageViewAvatar1);
         }
     }
 

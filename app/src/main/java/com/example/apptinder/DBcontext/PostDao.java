@@ -14,12 +14,17 @@ public interface PostDao {
     @Insert
     void insertpost(Post post);
 
-    @Query("SELECT * FROM Posts")
+    @Query("SELECT * FROM Posts ORDER BY postId DESC")
     List<Post> listPost();
+
 
     @Query("SELECT postId FROM Posts ORDER BY postId DESC LIMIT 1")
     int getLatestPostId();
 
     @Query("SELECT * FROM Posts WHERE postId = :postId")
     Post getPostById(int postId);
+
+    @Query("SELECT * FROM Posts WHERE userId = :userId ORDER BY postId DESC")
+    List<Post> listPostgetid(int userId);
+
 }

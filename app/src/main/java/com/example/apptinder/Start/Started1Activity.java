@@ -1,10 +1,12 @@
-package com.example.apptinder;
+package com.example.apptinder.Start;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.apptinder.R;
 
 public class Started1Activity extends AppCompatActivity {
 

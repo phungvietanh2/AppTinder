@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -32,18 +32,35 @@
                     android:layout_height="50dp"
                     android:src="@drawable/ic_person" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/bogachngang"
-                    android:text="Bong em"
-                    android:textSize="20dp" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/namesnTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/bogachngang"
+                        android:text="Bong em"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/datestart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#810909"
+                        android:background="@drawable/bogachngang"
+                        android:text="12 " />
+
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
@@ -67,25 +84,25 @@
 
                 <ImageView
                     android:id="@+id/idIVcourseIV"
-                    android:layout_width="150dp"
-                    android:background="@drawable/circle_shape"
-                    android:layout_height="250dp"
+                    android:layout_width="180dp"
+                    android:layout_height="200dp"
                     android:layout_gravity="fill"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:layout_marginTop="15dp"
+                android:gravity="end"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/loveIm"
-                    android:layout_marginRight="5dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
                     android:src="@drawable/ic_favorite_border_24" />
 
                 <TextView
@@ -104,9 +121,9 @@
 
                 <TextView
                     android:id="@+id/CountCommenTv"
-                    android:layout_marginRight="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
                     android:text="990" />
 
             </LinearLayout>

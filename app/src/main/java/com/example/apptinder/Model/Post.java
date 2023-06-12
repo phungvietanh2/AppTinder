@@ -32,6 +32,8 @@ public class Post implements Parcelable {
     public String timestamp;
     @ColumnInfo(name = "image")
     public List<String> images;
+    @ColumnInfo(name = "isLiked")
+    private boolean isLiked;
 
     public Post() {
     }
@@ -76,6 +78,14 @@ public class Post implements Parcelable {
         this.timestamp = timestamp;
     }
 
+    public boolean isLiked() {
+        return isLiked;
+    }
+
+    public void setLiked(boolean liked) {
+        isLiked = liked;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -89,6 +99,7 @@ public class Post implements Parcelable {
         content = in.readString();
         timestamp = in.readString();
         images = in.createStringArrayList();
+        isLiked = in.readByte() != 0;
     }
 
     public static final Parcelable.Creator<Post> CREATOR = new Parcelable.Creator<Post>() {
@@ -113,6 +124,7 @@ public class Post implements Parcelable {
         dest.writeString(content);
         dest.writeString(timestamp);
         dest.writeStringList(images);
+        dest.writeByte((byte) (isLiked ? 1 : 0));
     }
 
 }

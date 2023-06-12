@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.example.apptinder.Fragment.FragmentChat;
 import com.example.apptinder.Fragment.FragmentHome;
+import com.example.apptinder.Fragment.FragmentSetting;
 import com.example.apptinder.Fragment.FragmentSocialNetwork;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new FragmentSocialNetwork()).commit();
             return true;
         }
+        if (itemId == R.id.a3) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new FragmentChat()).commit();
+            return true;
+        }
+        if (itemId == R.id.a4) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new FragmentSetting()).commit();
+            return true;
+        }
 
         return false;
     }
@@ -46,11 +56,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bindingView();
         bindingAction();
-
-        FragmentHome fragmentHome = new FragmentHome();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayout, fragmentHome)
-                .commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new FragmentHome()).commit();
     }
 
 }

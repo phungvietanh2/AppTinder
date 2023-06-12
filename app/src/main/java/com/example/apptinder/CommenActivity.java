@@ -4,14 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,19 +19,23 @@ import com.example.apptinder.Adapter.ListCommentAdapter;
 import com.example.apptinder.DBcontext.CommentDao;
 import com.example.apptinder.DBcontext.DBcontext;
 import com.example.apptinder.DBcontext.PostDao;
+import com.example.apptinder.DBcontext.UserDao;
 import com.example.apptinder.Model.Comments;
 import com.example.apptinder.Model.Post;
-import com.example.apptinder.SessionManager.SessionManager;
+import com.example.apptinder.Model.User;
+import com.example.apptinder.Type.SessionManager.SessionManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class CommenActivity extends AppCompatActivity {
+import de.hdodenhof.circleimageview.CircleImageView;
 
+public class CommenActivity extends AppCompatActivity {
+    private CircleImageView avataa ,avatacmt;
+    private TextView name1;
     private EditText editText, commentEt;
     private ImageView imageView;
     private RecyclerView recyclerView;
-    private Button add;
+    private ImageButton add;
     private ListCommentAdapter listCommentAdapter;
     private List<Comments> comments;
     private List<Post> posts;
@@ -40,6 +43,9 @@ public class CommenActivity extends AppCompatActivity {
     private CommentDao commentDao;
     private PostDao postDao;
     private SessionManager sessionManager;
+    private UserDao userDao;
+    private List<User> users;
+
 
     private void bindingView() {
         editText = findViewById(R.id.nameCometEt);
@@ -47,37 +53,80 @@ public class CommenActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewcomment);
         commentEt = findViewById(R.id.commentEditText);
         add = findViewById(R.id.addCommentButton);
+        avataa = findViewById(R.id.imageViewAvatarcomen);
+        name1 = findViewById(R.id.name12);
+        avatacmt=findViewById(R.id.imagepreViewAvatar123);
     }
 
 
     private void bindingDataAdapter() {
         Intent intent = getIntent();
-        if (intent != null) {
-            Post post = intent.getParcelableExtra("post");
-            if (post != null) {
-                editText.setText(post.getContent());
-                List<String> imageList = post.getImages();
-                if (imageList != null && !imageList.isEmpty()) {
-                    Uri imageUri = Uri.parse(imageList.get(0)); // Lấy đường dẫn Uri từ List<String>
-                    imageView.setImageURI(imageUri);
-                } else {
-                    // Nếu danh sách ảnh rỗng, bạn có thể đặt một ảnh mặc định cho ImageView
-                    imageView.setImageResource(R.drawable.ic_close);
-                }
-            } else {
-                // Xử lý khi post là null
-            }
-        } else {
-            // Xử lý khi intent là null
-        }
+        int postId = intent.getIntExtra("postId", 0);
+
         db = DBcontext.getDatabase(this);
 
         commentDao = db.commentDao();
         postDao = db.postDao();
+        userDao = db.userDao();
+        sessionManager = new SessionManager(this);
+        int userid1=sessionManager.getUserId();
 
+
+        Post post = postDao.getPostById(postId);
+        editText.setText(post.getContent());
+
+        List<String> imageList = post.getImages();
+        if (imageList != null && !imageList.isEmpty()) {
+            String avatar1 = imageList.get(0); // Get the first image from the list
+            if (avatar1 != null) {
+                Uri avatarUri = Uri.parse(avatar1);
+                imageView.setImageURI(avatarUri);
+            } else {
+                imageView.setImageResource(R.drawable.ic_close);
+            }
+        } else {
+            imageView.setImageResource(R.drawable.ic_close);
+        }
+
+
+        int usearid = post.getUserId();
+
+        users = userDao.getUserList();
+        User user = null;
+
+        for (User u : users) {
+            if (u.getUserId() == usearid) {
+                user = u;
+                break;
+            }
+        }
+        if (user != null) {
+
+            name1.setText(user.getUsername());
+            String avatar = user.getAvatar();
+            if (avatar != null) {
+                Uri avatarUri = Uri.parse(avatar);
+                avataa.setImageURI(avatarUri);
+            } else {
+                avataa.setImageResource(R.drawable.ic_close);
+            }
+        } else {
+            // Handle the case when the user list is empty
+        }
+
+        User a = userDao.getUserById(userid1);
+        String av1 = a.getAvatar();
+        if (av1 != null) {
+            Uri avatarUri = Uri.parse(av1);
+            avatacmt.setImageURI(avatarUri);
+        } else {
+            avataa.setImageResource(R.drawable.ic_close);
+        }
+
+Log.d("a",av1);
         comments = commentDao.getAllComments();
         posts = postDao.listPost();
-        int postId = intent.getIntExtra("postId", 0);
+
         listCommentAdapter = new ListCommentAdapter(this, comments, posts, postId);
 
         recyclerView.setAdapter(listCommentAdapter);
@@ -99,11 +148,11 @@ public class CommenActivity extends AppCompatActivity {
         comments1.setUserId(sessionManager.getUserId());
         comments1.setContent(comment);
         commentDao.insertcomment(comments1);
+        commentEt.setText("");
 
-        // Cập nhật danh sách comment và thông báo cho adapter biết rằng dữ liệu đã thay đổi
         comments = commentDao.getAllComments();
         listCommentAdapter.setComments(comments);
-        // Hiển thị thông báo bình luận thành công
+
         Toast.makeText(getApplicationContext(), "Bình luận thành công", Toast.LENGTH_SHORT).show();
     }
 
@@ -114,5 +163,6 @@ public class CommenActivity extends AppCompatActivity {
         bindingView();
         bindingDataAdapter();
         bindingAction();
+
     }
 }

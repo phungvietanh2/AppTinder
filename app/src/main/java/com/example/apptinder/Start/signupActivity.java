@@ -1,4 +1,4 @@
-package com.example.apptinder;
+package com.example.apptinder.Start;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apptinder.DBcontext.DBcontext;
 import com.example.apptinder.DBcontext.UserDao;
 import com.example.apptinder.Model.User;
+import com.example.apptinder.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class signupActivity extends AppCompatActivity {

@@ -99,4 +99,18 @@ public class User {
     public void setText(String text) {
         this.text = text;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }
